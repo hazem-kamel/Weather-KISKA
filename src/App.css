@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background-image: url("https://images.hdqwalls.com/wallpapers/mountains-moon-trees-minimalism-hd.jpg"); */
 }
 
 .App-logo {
