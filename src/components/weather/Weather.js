@@ -36,7 +36,7 @@ componentWillReceiveProps(nextProps,prevState){
 const Api_key='8cc1f7a80f278edcf892761e33af1953'
         //   const {city , country } =this.state
         // const {city} = this.props
-        const api_call=await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city} &appid=${Api_key}`,
+        const api_call=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city} &appid=${Api_key}`,
          { method: 'GET',
         mode: 'cors',
         header:{

@@ -4,7 +4,7 @@ import Weather from '../weather/Weather'
 import './Home.css'
 
 const Home = () => {
-    const [city , updateCity] = useState('Innsbruck')
+    const [city , updateCity] = useState('Salzburg')
     const [init,updateInit] = useState('')
     useEffect(()=>{
     },[])
