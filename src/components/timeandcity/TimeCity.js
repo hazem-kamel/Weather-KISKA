@@ -2,10 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import moment from 'moment'
 import './TimeCity.css'
-const TimeAndCity = () => {
-    console.log(moment().hour(Number)._d)
-    console.log(moment().format("dddd, MMMM Do YYYY")
-    )
+const TimeAndCity = props => {
    return(
        <div style={{display:"flex"}}>
            <div className="time">
@@ -13,7 +10,7 @@ const TimeAndCity = () => {
    <h4>{moment().format("dddd, MMMM Do YYYY")}</h4>
            </div>
            <div className="city">
-               <h3>Salzburg</h3>
+               <h3>{props.city}</h3>
                <h5>Austria</h5>
            </div>
        </div>

@@ -6,31 +6,36 @@ import './Weather.css'
 import 'weather-icons/css/weather-icons.css';
 
 class Weather extends React.Component{
-  
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-          city:'salzburg',
-          country:'Austria',
           icon:[],
-          main:null,
-          celsius:null,
-          temp_max:null,
-          temp_min:null,
-          description:null,
-          wind:null,
           error:false,
           fiveWeatherData:[],
-          displayData:[]
+          displayData:[],
+          state:''
         }
       }
-
-componentWillMount(){
-    this.getWeather();
+      componentDidMount(){
+        this.state.displayData.length=0
+        this.state.fiveWeatherData.length=0
+        console.log('entered here')
+        this.setState({state:this.props.city})
+        this.getWeather();
+}
+componentWillReceiveProps(nextProps,prevState){
+    if(nextProps.city !== this.props.city){
+        this.state.displayData.length=0
+        this.state.fiveWeatherData.length=0
+        console.log('entered here')
+        this.setState({state:this.props.city})
+        this.getWeather();
+    }
 }
       getWeather = async()=>{
 const Api_key='8cc1f7a80f278edcf892761e33af1953'
-          const {city , country } =this.state
+        //   const {city , country } =this.state
+        const {city} = this.props
         const api_call=await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city} &appid=${Api_key}`,
          { method: 'GET',
         mode: 'cors',
@@ -47,7 +52,6 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
     })
     let temp=[]
     this.state.fiveWeatherData.map(day => {
-        // this.state.displayData.push
         temp.push
         ({
             "celsius":this.celsiusConvert(day.main.temp),
@@ -55,6 +59,8 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
             "desc":day.weather[0].description,
             "max":this.celsiusConvert(day.main.temp_max),
             "min":this.celsiusConvert(day.main.temp_min),
+            "humidity":day.main.humidity,
+            "pressure":day.main.pressure
         })
           this.get_WeatherIcon(this.weatherIcon,day.weather[0].id)
     })
@@ -98,20 +104,19 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
                 break;
                 default:
                     this.state.icon.push(this.weatherIcon.Clouds)
-                //   this.setState({icon:this.weatherIcon.Clouds})
             }
           }
       render(){
           const {celsius,description,wind,icon,displayData} = this.state
           return (
-          <div>
+          <div className='container'>
               {
                 console.log(displayData,displayData.length)
               }
               {
               displayData.map((day,index) => 
            (
-                    <div className="card">
+                    <div onClick={()=>this.setState({show:!this.state.show})} className="card">
                          <i className={`wi ${icon[index]} display-1`}></i> 
                          <h4>{day.desc}</h4>
                          <h3>{day.celsius}&deg; </h3>
