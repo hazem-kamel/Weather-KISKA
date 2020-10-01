@@ -1,6 +1,15 @@
 .time{
-    display:"flex"
+    display:"flex";
+    margin-left:11%;
+    font-size: 27px;
+color:white;
 }
 .weather{
-    
+
+}
+.city{
+    margin-left:31%;
+    color:white;
+    font-size: 27px;
+
 }

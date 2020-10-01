@@ -1,18 +1,20 @@
 .container{
     display: flex;
-    /* background-color: beige; */
+    margin-top: 22px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .card{
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 4px;
-    height: 205px;
+    color: white;
     margin: 12px;
+    padding-bottom: 16px;
+    margin-top: 28px;
     cursor: pointer;
     flex-direction: column;
     padding-top: 39px;
 }
-
 .popup{
     bottom: 210px;
     background: indigo;

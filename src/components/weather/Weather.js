@@ -4,7 +4,7 @@ import React from 'react';
 import './Weather.css'
 // import Weather icons
 import 'weather-icons/css/weather-icons.css';
-
+import moment from 'moment'
 class Weather extends React.Component{
     constructor(props){
         super(props);
@@ -52,6 +52,7 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
     })
     let temp=[]
     this.state.fiveWeatherData.map(day => {
+        var dayday = moment(day.dt_txt, "YYYY-MM-DD HH:mm:ss")
         temp.push
         ({
             "celsius":this.celsiusConvert(day.main.temp),
@@ -60,7 +61,8 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
             "max":this.celsiusConvert(day.main.temp_max),
             "min":this.celsiusConvert(day.main.temp_min),
             "humidity":day.main.humidity,
-            "pressure":day.main.pressure
+            "pressure":day.main.pressure,
+            "day":dayday.format('dddd')
         })
           this.get_WeatherIcon(this.weatherIcon,day.weather[0].id)
     })
@@ -117,9 +119,11 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
               displayData.map((day,index) => 
            (
                     <div onClick={()=>this.setState({show:!this.state.show})} className="card">
-                         <i className={`wi ${icon[index]} display-1`}></i> 
+                         <i style={{fontSize:"40px"}} className={`wi ${icon[index]} display-1`}></i> 
+           {index === 0 ? <h1>Today</h1> : <h3>{day.day}</h3>}
+                  <h2>{day.celsius}&deg; </h2>
+
                          <h4>{day.desc}</h4>
-                         <h3>{day.celsius}&deg; </h3>
                          <h3>{day.wind} m/s </h3>
                     </div>
                       

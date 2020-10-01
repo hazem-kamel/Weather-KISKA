@@ -1,0 +1,18 @@
+.buttonStyling{
+    padding: 8px;
+    border-radius: 4px;
+    border-color: white;
+    font-weight: bolder;
+    color: white;
+    border: 2px white solid;
+    background: 0px;
+    width: 85px;
+    margin: 10px;
+    cursor: pointer;
+}
+.inputStyle{
+    border: 0px;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 6px;
+}

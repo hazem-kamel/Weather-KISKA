@@ -4,7 +4,7 @@ import moment from 'moment'
 import './TimeCity.css'
 const TimeAndCity = props => {
    return(
-       <div style={{display:"flex"}}>
+       <div style={{display:"flex",    padding:"60px"    }}>
            <div className="time">
    <h3>{moment().format("h:mm a")}</h3>
    <h4>{moment().format("dddd, MMMM Do YYYY")}</h4>
