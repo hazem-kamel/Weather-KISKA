@@ -21,21 +21,21 @@ class Weather extends React.Component{
         this.state.fiveWeatherData.length=0
         console.log('entered here')
         this.setState({state:this.props.city})
-        this.getWeather();
+        this.getWeather(this.props.city);
 }
 componentWillReceiveProps(nextProps,prevState){
     if(nextProps.city !== this.props.city){
+      console.log(nextProps.city)
         this.state.displayData.length=0
         this.state.fiveWeatherData.length=0
-        console.log('entered here')
-        this.setState({state:this.props.city})
-        this.getWeather();
+        this.setState({state:nextProps.city})
+        this.getWeather(nextProps.city);
     }
 }
-      getWeather = async()=>{
+      getWeather = async(city)=>{
 const Api_key='8cc1f7a80f278edcf892761e33af1953'
         //   const {city , country } =this.state
-        const {city} = this.props
+        // const {city} = this.props
         const api_call=await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city} &appid=${Api_key}`,
          { method: 'GET',
         mode: 'cors',
@@ -112,9 +112,6 @@ const Api_key='8cc1f7a80f278edcf892761e33af1953'
           const {celsius,description,wind,icon,displayData} = this.state
           return (
           <div className='container'>
-              {
-                console.log(displayData,displayData.length)
-              }
               {
               displayData.map((day,index) => 
            (

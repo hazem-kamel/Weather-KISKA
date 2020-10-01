@@ -7,12 +7,15 @@ const Home = () => {
     const [city , updateCity] = useState('Innsbruck')
     const [init,updateInit] = useState('')
     useEffect(()=>{
-    },[city])
+    },[])
 
     const changeCity = () => {
+        console.log(city)
         updateCity(init)
     }
+    console.log(city)
     return(
+    
         <div>
         <TimeAndCity city={city}/>
       <label style={{color:"white",fontWeight:"bold"}}>Change City</label>
